@@ -1,0 +1,13 @@
+# Ignore everything at the user home level
+*
+
+# Except this file and the website project
+!.gitignore
+!Desktop/
+!Desktop/website/
+!Desktop/website/**
+
+# Never commit sensitive or tool files inside the project
+Desktop/website/.env
+Desktop/website/.env.*
+Desktop/website/.claude/
