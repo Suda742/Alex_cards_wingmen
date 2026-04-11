@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAW Incorporation — Premium Digital Agency</title>
+  <meta name="description" content="SAW Incorporation builds premium websites and applications for forward-thinking businesses." />
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500,600,700,800&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <style>
+/* ─── RESET ─── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px;color-scheme:dark}
+body{font-family:'General Sans',sans-serif;background:#06090f;color:#e8eaf0;overflow-x:hidden;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+button{cursor:pointer;font-family:inherit;border:none;background:none}
+:focus{outline:none}
+:focus-visible{outline:2px solid #00A86B;outline-offset:3px;border-radius:4px}
+
+/* ─── TOKENS ─── */
+:root{
+  --green:#00A86B;
+  --green-dim:rgba(0,168,107,0.12);
+  --green-border:rgba(0,168,107,0.28);
+  --green-glow:rgba(0,168,107,0.4);
+  --bg:#06090f;
+  --bg2:#0b0f1a;
+  --bg3:#0f1420;
+  --card:rgba(255,255,255,0.035);
+  --card-border:rgba(255,255,255,0.07);
+  --card-hover:rgba(255,255,255,0.065);
+  --white:#ffffff;
+  --off-white:#e8eaf0;
+  --muted:rgba(232,234,240,0.45);
+  --muted2:rgba(232,234,240,0.22);
+  --r:14px;
+  --r2:20px;
+  --r3:28px;
+  --tr:240ms cubic-bezier(.4,0,.2,1);
+}
+
+/* ─── SKIP LINK ─── */
+.skip-link{position:fixed;top:-100px;left:1rem;z-index:9999;background:var(--green);color:#fff;padding:.6rem 1.2rem;border-radius:var(--r);font-size:.85rem;font-weight:700;transition:top .2s}
+.skip-link:focus{top:1rem}
+
+/* ─── SCROLL BAR ─── */
+#progress{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--green),#00e89b);z-index:9998;transition:width .08s linear}
+
+/* ─── NOISE OVERLAY ─── */
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px}
+
+/* ─── NAV ─── */
+#nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.5rem 0;transition:padding .3s cubic-bezier(.25,.46,.45,.94),background .3s cubic-bezier(.25,.46,.45,.94),border-color .3s cubic-bezier(.25,.46,.45,.94)}
+#nav.stuck{padding:.8rem 0;background:rgba(6,9,15,.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--card-border)}
+.nav-wrap{max-width:1280px;margin:0 auto;padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem}
+.logo{display:flex;align-items:center;gap:.5rem;font-family:'General Sans',sans-serif;font-weight:700;font-size:1.25rem;letter-spacing:-.022em}
+.logo-s{color:var(--green)}
+.logo-aw{color:var(--white);opacity:.9}
+.logo-inc{color:var(--muted);font-size:.85rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+.nav-links{display:flex;align-items:center;gap:2rem}
+.nav-links a{color:var(--muted);font-size:.85rem;font-weight:500;letter-spacing:.01em;transition:color var(--tr);position:relative}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:1px;background:var(--green);transition:width var(--tr)}
+.nav-links a:hover{color:var(--white)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-links a.active{color:var(--white)}
+.nav-cta{display:inline-flex;align-items:center;gap:.45rem;background:var(--green);color:#fff;padding:.55rem 1.25rem;border-radius:100px;font-size:.82rem;font-weight:700;letter-spacing:.01em;transition:all var(--tr)}
+.nav-cta:hover{background:#00c97e;box-shadow:0 0 24px var(--green-glow)}
+.hamburger{display:none;flex-direction:column;gap:5px;padding:10px;min-width:44px;min-height:44px;align-items:center;justify-content:center;border-radius:10px;transition:background var(--tr)}
+.hamburger:hover{background:var(--card)}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--off-white);border-radius:2px;transition:all var(--tr)}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobile-nav{display:none;flex-direction:column;gap:0;background:rgba(6,9,15,.97);backdrop-filter:blur(20px);padding:.5rem 2.5rem 1.5rem;border-top:1px solid var(--card-border)}
+.mobile-nav a{color:var(--muted);font-size:1rem;font-weight:500;padding:.85rem 0;min-height:44px;display:flex;align-items:center;border-bottom:1px solid var(--card-border);transition:color var(--tr)}
+.mobile-nav a:last-child{border:none;color:var(--green);font-weight:700;margin-top:.25rem}
+.mobile-nav a:hover{color:var(--white)}
+.mobile-nav.open{display:flex}
+
+/* ─── CONTAINER ─── */
+.wrap{max-width:1280px;margin:0 auto;padding:0 2.5rem}
+
+/* ─── SECTION LABELS ─── */
+.eyebrow{display:inline-flex;align-items:center;gap:.5rem;background:var(--green-dim);border:1px solid var(--green-border);color:var(--green);font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.4rem 1rem;border-radius:100px;margin-bottom:1.25rem}
+.eyebrow-dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:pdot 2s ease-in-out infinite}
+@keyframes pdot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.section-head{text-align:center;margin-bottom:4rem}
+
+/* ─── TYPOGRAPHY ─── */
+h1,h2,h3,h4{font-family:'General Sans',sans-serif;font-weight:700;line-height:1.12;letter-spacing:-.025em}
+.display{font-size:clamp(3rem,7vw,6rem);line-height:1.02}
+.h2{font-size:clamp(2rem,4.5vw,3.5rem);font-weight:700}
+.h3{font-size:clamp(1.1rem,2vw,1.35rem);letter-spacing:-.018em;font-weight:600}
+.body-lg{font-size:1.05rem;line-height:1.75;color:var(--muted)}
+.body-sm{font-size:.875rem;line-height:1.65;color:var(--muted)}
+
+/* ─── HERO DOT GRID (from 21st.dev Bento Monochrome grid pattern) ─── */
+.hero-grid{position:absolute;inset:0;pointer-events:none;z-index:1;
+  background-image:linear-gradient(to right,rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,.045) 1px,transparent 1px);
+  background-size:60px 60px;
+  -webkit-mask-image:radial-gradient(ellipse 85% 70% at 50% 0%,black 35%,transparent 100%);
+  mask-image:radial-gradient(ellipse 85% 70% at 50% 0%,black 35%,transparent 100%)}
+/* vertical accent lines on sides of hero (from animated-hero-section-ui) */
+.hero-vline{position:absolute;top:0;height:100%;width:1px;background:rgba(255,255,255,.06);pointer-events:none;z-index:1}
+.hero-vline::after{content:'';position:absolute;top:0;width:1px;height:160px;background:linear-gradient(to bottom,transparent,var(--green),transparent);animation:lineSlide 4s ease-in-out infinite}
+.hero-vline-l{left:calc(50% - 380px)}
+.hero-vline-r{right:calc(50% - 380px)}
+.hero-vline-r::after{animation-delay:2s}
+@keyframes lineSlide{0%{top:-160px;opacity:0}30%{opacity:1}70%{opacity:1}100%{top:100%;opacity:0}}
+
+/* ─── SCROLL ANIMATIONS ─── */
+/* Skill: blur + translateY + opacity combo — each property alone looks flat */
+.fade-up{opacity:0;transform:translateY(22px);will-change:transform,opacity;transition:opacity .6s cubic-bezier(.25,.46,.45,.94),transform .6s cubic-bezier(.25,.46,.45,.94)}
+.fade-up.in{opacity:1;transform:none}
+.fade-left{opacity:0;transform:translateX(-30px);will-change:transform,opacity;transition:opacity .6s cubic-bezier(.25,.46,.45,.94),transform .6s cubic-bezier(.25,.46,.45,.94)}
+.fade-left.in{opacity:1;transform:none}
+.fade-right{opacity:0;transform:translateX(30px);will-change:transform,opacity;transition:opacity .6s cubic-bezier(.25,.46,.45,.94),transform .6s cubic-bezier(.25,.46,.45,.94)}
+.fade-right.in{opacity:1;transform:none}
+.scale-in{opacity:0;transform:scale(.94);will-change:transform,opacity;transition:opacity .6s cubic-bezier(.25,.46,.45,.94),transform .6s cubic-bezier(.25,.46,.45,.94)}
+.scale-in.in{opacity:1;transform:none}
+/* Clip-path bottom reveal for portfolio cards */
+.clip-up{clip-path:inset(0 0 100% 0);transition:clip-path .85s cubic-bezier(.77,0,.175,1)}
+.clip-up.in{clip-path:inset(0 0 0 0)}
+@media(prefers-reduced-motion:reduce){
+  .fade-up,.fade-left,.fade-right,.scale-in,.clip-up{opacity:1;transform:none;clip-path:none;transition:none;will-change:auto}
+  .hero-title .word,.hero-badge{animation:none;opacity:1;transform:none}
+}
+
+/* ─── HERO ─── */
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;overflow:hidden;padding:10rem 2.5rem 5rem;text-align:center}
+#hero-canvas{position:absolute;inset:0;pointer-events:none}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none}
+.orb1{width:700px;height:700px;background:radial-gradient(circle,rgba(0,168,107,.13) 0%,transparent 65%);top:-150px;left:-150px}
+.orb2{width:600px;height:600px;background:radial-gradient(circle,rgba(15,52,96,.35) 0%,transparent 65%);bottom:-100px;right:-100px}
+.orb3{width:400px;height:400px;background:radial-gradient(circle,rgba(0,168,107,.07) 0%,transparent 65%);top:40%;left:50%;transform:translateX(-50%)}
+.hero-inner{position:relative;z-index:2;max-width:960px}
+.hero-badge{display:inline-flex;align-items:center;gap:.6rem;background:rgba(0,168,107,.1);border:1px solid rgba(0,168,107,.25);color:#00c97e;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.45rem 1.1rem;border-radius:100px;margin-bottom:2rem}
+.hero-badge-dot{width:7px;height:7px;background:var(--green);border-radius:50%;animation:pdot 2s infinite}
+.hero-title{font-family:'General Sans',sans-serif;font-weight:700;font-size:clamp(2.75rem,7.5vw,6.25rem);line-height:1.04;letter-spacing:-.03em;margin-bottom:1.75rem;color:var(--white)}
+.hero-title .line{display:block;overflow:hidden}
+.hero-title .word{display:inline-block;animation:wordUp .85s cubic-bezier(.25,.46,.45,.94) both}
+.hero-title .accent{color:var(--green);position:relative}
+.hero-title .accent::after{content:'';position:absolute;left:0;bottom:4px;width:100%;height:3px;background:var(--green);border-radius:2px;opacity:.5}
+/* Skill: blur + translateY(12px) + opacity — all three properties together */
+@keyframes wordUp{from{transform:translateY(12px);filter:blur(5px);opacity:0}to{transform:translateY(0);filter:blur(0px);opacity:1}}
+.hero-sub{font-size:clamp(1rem,1.8vw,1.2rem);color:var(--muted);max-width:600px;margin:0 auto 3rem;line-height:1.75}
+.hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:5rem}
+.btn-prim{display:inline-flex;align-items:center;gap:.5rem;background:var(--green);color:#fff;padding:.9rem 2rem;border-radius:100px;font-size:.9rem;font-weight:700;transition:all var(--tr);cursor:pointer}
+.btn-prim:hover{background:#00c97e;box-shadow:0 0 32px var(--green-glow);transform:translateY(-2px)}
+.btn-ghost{display:inline-flex;align-items:center;gap:.5rem;background:transparent;color:var(--off-white);padding:.9rem 2rem;border-radius:100px;font-size:.9rem;font-weight:600;border:1px solid var(--card-border);transition:all var(--tr);cursor:pointer}
+.btn-ghost:hover{border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.05);transform:translateY(-2px)}
+/* HERO STATS */
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;max-width:800px;margin:0 auto;background:var(--card-border);border:1px solid var(--card-border);border-radius:var(--r2);overflow:hidden;backdrop-filter:blur(12px)}
+.hstat{background:rgba(255,255,255,.025);padding:1.75rem 1rem;text-align:center}
+.hstat-n{font-family:'General Sans',sans-serif;font-size:2.25rem;font-weight:800;color:var(--white);line-height:1;margin-bottom:.3rem}
+.hstat-n em{color:var(--green);font-style:normal}
+.hstat-l{font-size:.72rem;color:var(--muted2);font-weight:500;text-transform:uppercase;letter-spacing:.08em}
+/* SCROLL INDICATOR */
+.scroll-ind{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:var(--muted2);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
+.scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,var(--green),transparent);animation:scrollPulse 2s ease-in-out infinite}
+@keyframes scrollPulse{0%,100%{opacity:.3;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.1)}}
+
+/* ─── MARQUEE ─── */
+.marquee-wrap{padding:1.5rem 0;border-top:1px solid var(--card-border);border-bottom:1px solid var(--card-border);background:var(--bg2);overflow:hidden;position:relative}
+.marquee-track{display:flex;gap:2rem;width:max-content;animation:marquee 28s linear infinite}
+.marquee-wrap:hover .marquee-track{animation-play-state:paused}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marquee-item{display:flex;align-items:center;gap:.75rem;white-space:nowrap;font-size:.8rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;padding:0 1rem}
+.marquee-item span{color:var(--green);font-size:.9rem}
+
+/* ─── SERVICES (BENTO) ─── */
+/* 21st.dev — Dark Basic Grid (40px, slate lines) */
+#services{padding:8rem 0;background:var(--bg);background-image:linear-gradient(to right,rgba(100,116,139,.06) 1px,transparent 1px),linear-gradient(to bottom,rgba(100,116,139,.06) 1px,transparent 1px);background-size:48px 48px}
+.bento{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:220px;gap:1.25rem}
+.bcard{background:var(--card);border:1px solid var(--card-border);border-radius:var(--r2);padding:2rem;position:relative;overflow:hidden;cursor:pointer;transition:border-color var(--tr),background var(--tr),transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s}
+.bcard:hover{border-color:var(--green-border);background:var(--card-hover);transform:translateY(-4px);box-shadow:0 24px 60px rgba(0,0,0,.4),0 0 0 1px var(--green-border)}
+.bcard::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 20%,rgba(0,168,107,.08) 0%,transparent 60%);opacity:0;transition:opacity var(--tr)}
+.bcard:hover::before{opacity:1}
+/* bento layout */
+.bc-1{grid-column:span 3;grid-row:span 2}
+.bc-2{grid-column:span 2}
+.bc-3{grid-column:span 1}
+.bc-4{grid-column:span 1}
+.bc-5{grid-column:span 2}
+.bc-6{grid-column:span 3}
+/* large card extras */
+.bc-1{display:flex;flex-direction:column;justify-content:flex-end}
+.bc-1 .bcard-num,.bc-6 .bcard-num{font-family:'General Sans',sans-serif;font-size:6rem;font-weight:800;color:rgba(0,168,107,.1);line-height:1;position:absolute;top:.75rem;right:1.25rem;letter-spacing:-.05em;pointer-events:none;transition:color var(--tr);user-select:none}
+.bcard:hover .bcard-num{color:rgba(0,168,107,.2)}
+.bcard-icon{width:44px;height:44px;background:var(--green-dim);border:1px solid var(--green-border);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--green);margin-bottom:1.25rem;transition:background var(--tr)}
+.bcard:hover .bcard-icon{background:rgba(0,168,107,.2)}
+.bcard h3{font-family:'General Sans',sans-serif;font-size:1rem;font-weight:700;color:var(--white);margin-bottom:.5rem;letter-spacing:-.01em}
+.bcard p{font-size:.82rem;color:var(--muted);line-height:1.6}
+.bc-1 h3{font-size:1.4rem;margin-bottom:.6rem}
+.bc-1 p{font-size:.9rem}
+.bcard-tag{display:inline-block;background:var(--green-dim);border:1px solid var(--green-border);color:var(--green);font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .65rem;border-radius:100px;margin-bottom:1rem}
+/* Arrow only on small/medium cards — not on bc-1/bc-6 (they have bcard-num at same corner) */
+.bcard-arrow{position:absolute;top:1.25rem;right:1.25rem;width:32px;height:32px;background:var(--card-border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:background var(--tr),color var(--tr),transform .35s cubic-bezier(.22,1,.36,1)}
+.bcard:hover .bcard-arrow{background:var(--green);color:#fff;transform:rotate(45deg)}
+/* Small cards (1-col) — tighten vertical rhythm so text breathes */
+.bc-3 .bcard-icon,.bc-4 .bcard-icon{margin-bottom:.75rem}
+.bc-3 h3,.bc-4 h3{margin-bottom:.3rem}
+
+/* ─── BENTO — 21st.dev enhancements ─── */
+/* Icon float on hover (from Bento Monochrome bento2-float) */
+@keyframes iconFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.bcard:hover .bcard-icon{animation:iconFloat 2s ease-in-out infinite}
+/* Spotlight radial that follows cursor — set via JS */
+.bcard{--sx:50%;--sy:50%}
+.bcard::after{content:'';position:absolute;inset:0;border-radius:var(--r2);opacity:0;transition:opacity .35s;background:radial-gradient(240px circle at var(--sx) var(--sy),rgba(0,168,107,.1),transparent 70%);pointer-events:none}
+.bcard:hover::after{opacity:1}
+
+/* ─── NUMBERS ─── */
+/* 21st.dev — Dark White Dotted Grid (28px dots) */
+#numbers{padding:7rem 0;background:var(--bg2);background-image:radial-gradient(circle,rgba(255,255,255,.055) 1px,transparent 1px);background-size:28px 28px;position:relative;overflow:hidden}
+#numbers::before{content:'';position:absolute;left:-200px;top:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(0,168,107,.07) 0%,transparent 65%);border-radius:50%;pointer-events:none}
+.numbers-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--card-border);border:1px solid var(--card-border);border-radius:var(--r2);overflow:hidden}
+.num-item{background:var(--bg2);padding:3rem 2rem;text-align:center;position:relative;overflow:hidden;transition:background var(--tr)}
+.num-item::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--green),transparent);transform:scaleX(0);transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.num-item:hover::before{transform:scaleX(1)}
+.num-item:hover{background:rgba(0,168,107,.03)}
+.num-big{font-family:'General Sans',sans-serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:800;color:var(--white);line-height:1;margin-bottom:.4rem}
+.num-big em{color:var(--green);font-style:normal}
+.num-label{font-size:.78rem;color:var(--muted2);font-weight:500;text-transform:uppercase;letter-spacing:.1em}
+
+/* ─── PORTFOLIO ─── */
+/* 21st.dev — Dark Dot Matrix (30px, ultra-subtle so cards pop) */
+#portfolio{padding:8rem 0;background:var(--bg);background-image:radial-gradient(circle,rgba(255,255,255,.04) 1px,transparent 1px);background-size:30px 30px}
+.port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.port-card{border-radius:var(--r2);overflow:hidden;position:relative;cursor:pointer;aspect-ratio:4/3;transition:transform .5s cubic-bezier(.22,1,.36,1)}
+.port-card:hover{transform:scale(1.02)}
+.port-card:focus-visible{outline:2px solid var(--green);outline-offset:4px}
+.port-img{width:100%;height:100%;display:flex;align-items:center;justify-content:center;transition:transform .6s cubic-bezier(.22,1,.36,1);position:relative}
+.port-card:hover .port-img{transform:scale(1.06)}
+/* Grid dot pattern on each portfolio card */
+.port-img::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.08) 1px,transparent 1px);background-size:28px 28px;pointer-events:none}
+.port-img-icon{opacity:.15;color:#fff;transition:opacity .45s cubic-bezier(.22,1,.36,1)}
+.port-card:hover .port-img-icon{opacity:.25}
+.port-overlay{position:absolute;inset:0;background:linear-gradient(160deg,transparent 30%,rgba(6,9,15,.97) 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:1.75rem;opacity:0;transition:opacity .35s ease}
+.port-card:hover .port-overlay,.port-card:focus-within .port-overlay{opacity:1}
+.port-tag{display:inline-block;background:var(--green-dim);border:1px solid var(--green-border);color:#00c97e;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.22rem .65rem;border-radius:100px;margin-bottom:.65rem;width:fit-content}
+.port-overlay h3{font-family:'General Sans',sans-serif;font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:.35rem}
+.port-overlay p{font-size:.8rem;color:rgba(232,234,240,.55);line-height:1.5;margin-bottom:.75rem}
+.port-link{display:inline-flex;align-items:center;gap:.35rem;color:var(--green);font-size:.8rem;font-weight:700;letter-spacing:.02em;transition:gap var(--tr)}
+.port-card:hover .port-link{gap:.6rem}
+/* gradients */
+.pg1{background:linear-gradient(135deg,#0d2137,#0a3a5c)}
+.pg2{background:linear-gradient(135deg,#05291a,#064d2e)}
+.pg3{background:linear-gradient(135deg,#1a0d3a,#2e1566)}
+.pg4{background:linear-gradient(135deg,#2a0a0a,#4d1515)}
+.pg5{background:linear-gradient(135deg,#052929,#0a4040)}
+.pg6{background:linear-gradient(135deg,#0a1a40,#102060)}
+
+/* ─── ABOUT ─── */
+/* 21st.dev — Dark Grid Lines (40px, alternates from portfolio dots) */
+#about{padding:8rem 0;background:var(--bg2);background-image:linear-gradient(to right,rgba(100,116,139,.052) 1px,transparent 1px),linear-gradient(to bottom,rgba(100,116,139,.052) 1px,transparent 1px);background-size:40px 40px}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+.about-text .eyebrow{margin-bottom:1.5rem}
+.about-text .h2{color:var(--white);margin-bottom:1.5rem}
+.about-text p{color:var(--muted);line-height:1.8;margin-bottom:1.25rem}
+.about-feats{display:flex;flex-direction:column;gap:.85rem;margin-top:2rem}
+.afeat{display:flex;gap:1rem;align-items:flex-start;padding:1rem 1.25rem;background:var(--card);border:1px solid var(--card-border);border-radius:var(--r);transition:border-color var(--tr),background var(--tr)}
+.afeat:hover{border-color:var(--green-border);background:var(--card-hover)}
+.afeat-icon{width:36px;height:36px;min-width:36px;background:var(--green-dim);border:1px solid var(--green-border);border-radius:9px;display:flex;align-items:center;justify-content:center;color:var(--green);margin-top:1px}
+.afeat h4{font-family:'General Sans',sans-serif;font-size:.9rem;font-weight:700;color:var(--white);margin-bottom:.2rem}
+.afeat p{font-size:.82rem;color:var(--muted);line-height:1.5}
+/* about visual */
+.about-visual{position:relative}
+.av-main{background:var(--card);border:1px solid var(--card-border);border-radius:var(--r3);padding:2.5rem;position:relative;overflow:hidden}
+.av-main::before{content:'';position:absolute;top:-80px;right:-80px;width:280px;height:280px;background:radial-gradient(circle,rgba(0,168,107,.18) 0%,transparent 65%);border-radius:50%;pointer-events:none}
+.av-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.av-stat{background:rgba(255,255,255,.03);border:1px solid var(--card-border);border-radius:var(--r);padding:1.75rem 1.25rem;text-align:center;transition:border-color var(--tr)}
+.av-stat:hover{border-color:var(--green-border)}
+.av-stat-n{font-family:'General Sans',sans-serif;font-size:2.5rem;font-weight:800;color:var(--white);line-height:1;margin-bottom:.3rem}
+.av-stat-n em{color:var(--green);font-style:normal}
+.av-stat-l{font-size:.7rem;color:var(--muted2);text-transform:uppercase;letter-spacing:.1em;font-weight:500}
+.av-badge{position:absolute;bottom:-1.5rem;left:2rem;background:rgba(11,15,26,.95);backdrop-filter:blur(12px);border:1px solid var(--card-border);border-radius:var(--r);padding:.9rem 1.25rem;display:flex;align-items:center;gap:.85rem;white-space:nowrap}
+.av-badge-icon{width:38px;height:38px;background:var(--green-dim);border:1px solid var(--green-border);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--green)}
+.av-badge strong{display:block;font-size:.88rem;font-weight:700;color:var(--white)}
+.av-badge span{font-size:.72rem;color:var(--muted)}
+/* floating card */
+.av-float{position:absolute;top:-1.5rem;right:-1.5rem;background:rgba(11,15,26,.92);backdrop-filter:blur(12px);border:1px solid var(--green-border);border-radius:var(--r);padding:1rem 1.25rem;display:flex;align-items:center;gap:.75rem}
+.av-float-dot{width:10px;height:10px;background:var(--green);border-radius:50%;box-shadow:0 0 12px var(--green-glow);animation:pdot 2s infinite}
+.av-float strong{font-size:.82rem;font-weight:700;color:var(--white)}
+.av-float span{font-size:.7rem;color:var(--muted);display:block}
+
+/* ─── PROCESS ─── */
+/* 21st.dev — Dark White Dotted Grid (32px) */
+#process{padding:8rem 0;background:var(--bg);background-image:radial-gradient(circle,rgba(255,255,255,.048) 1px,transparent 1px);background-size:32px 32px}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-top:1rem}
+.pstep{background:var(--card);border:1px solid var(--card-border);border-radius:var(--r2);padding:2rem 1.75rem;position:relative;overflow:hidden;transition:border-color var(--tr),transform .4s cubic-bezier(.22,1,.36,1)}
+.pstep:hover{border-color:var(--green-border);transform:translateY(-4px)}
+.pstep-num{font-family:'General Sans',sans-serif;font-size:5rem;font-weight:800;color:rgba(255,255,255,.04);line-height:1;position:absolute;top:.5rem;right:1rem;letter-spacing:-.04em}
+.pstep-icon{width:44px;height:44px;background:var(--green-dim);border:1px solid var(--green-border);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--green);margin-bottom:1.25rem}
+.pstep h3{font-family:'General Sans',sans-serif;font-size:1rem;font-weight:700;color:var(--white);margin-bottom:.6rem}
+.pstep p{font-size:.82rem;color:var(--muted);line-height:1.65}
+.pstep-line{position:absolute;top:50%;right:-1.25rem;width:1.25rem;height:1px;background:linear-gradient(90deg,var(--green-border),transparent);z-index:10}
+.pstep:last-child .pstep-line{display:none}
+
+/* ─── TESTIMONIALS ─── */
+/* 21st.dev — Dark Grid Lines (44px) */
+#testimonials{padding:8rem 0;background:var(--bg2);background-image:linear-gradient(to right,rgba(100,116,139,.05) 1px,transparent 1px),linear-gradient(to bottom,rgba(100,116,139,.05) 1px,transparent 1px);background-size:44px 44px}
+.tcarousel{position:relative;overflow:hidden}
+.ttrack{display:flex;transition:transform .55s cubic-bezier(.22,1,.36,1)}
+.tslide{min-width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;padding:0 .5rem}
+.tcard{background:var(--card);border:1px solid var(--card-border);border-radius:var(--r2);padding:2rem;display:flex;flex-direction:column;gap:1rem;transition:border-color var(--tr)}
+.tcard:hover{border-color:var(--green-border)}
+.tcard-top{display:flex;justify-content:space-between;align-items:flex-start}
+.tstars{display:flex;gap:.2rem;color:#FBBF24}
+.tquote-mark{font-family:'General Sans',sans-serif;font-size:3rem;font-weight:800;color:var(--green);opacity:.3;line-height:.8}
+.tquote{font-size:.875rem;color:var(--muted);line-height:1.75;font-style:italic;flex:1}
+.tauthor{display:flex;align-items:center;gap:.85rem;margin-top:auto;padding-top:1rem;border-top:1px solid var(--card-border)}
+.tavatar{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'General Sans',sans-serif;font-weight:700;font-size:.9rem;color:#fff;flex-shrink:0}
+.av-g{background:linear-gradient(135deg,var(--green),#00796b)}
+.av-b{background:linear-gradient(135deg,#1565c0,#0d3460)}
+.av-p{background:linear-gradient(135deg,#6a1b9a,#2e1566)}
+.tname{font-size:.85rem;font-weight:700;color:var(--white)}
+.trole{font-size:.72rem;color:var(--muted2)}
+.tdots{display:flex;justify-content:center;gap:.5rem;margin-top:2rem}
+.tdot{width:7px;height:7px;border-radius:100px;background:var(--card-border);border:none;cursor:pointer;transition:background var(--tr),width var(--tr),opacity var(--tr);padding:8px;margin:-8px;background-clip:content-box}
+.tdot.on{background:var(--green);width:24px;background-clip:content-box}
+
+/* ─── PRICING — 21st.dev glassmorphism (Animated Glassy Pricing) ─── */
+/* 21st.dev — Dark Grid Lines (52px) sits behind the animated blobs */
+#pricing{padding:8rem 0;background:var(--bg);background-image:linear-gradient(to right,rgba(100,116,139,.045) 1px,transparent 1px),linear-gradient(to bottom,rgba(100,116,139,.045) 1px,transparent 1px);background-size:52px 52px;position:relative;overflow:hidden}
+/* animated gradient blobs behind pricing cards */
+.price-blob{position:absolute;border-radius:50%;filter:blur(140px);pointer-events:none;animation:blobDrift 12s ease-in-out infinite}
+.pb1{width:500px;height:500px;background:rgba(0,168,107,.07);top:-120px;left:-100px;animation-delay:0s}
+.pb2{width:600px;height:600px;background:rgba(15,52,96,.25);bottom:-150px;right:-150px;animation-delay:-6s}
+@keyframes blobDrift{0%,100%{transform:scale(1) translate(0,0)}50%{transform:scale(1.08) translate(20px,-20px)}}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;align-items:start;position:relative;z-index:1}
+/* glassmorphism cards */
+.pcard{background:rgba(255,255,255,.04);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid var(--card-border);border-radius:var(--r2);padding:2.25rem;position:relative;transition:border-color .4s cubic-bezier(.22,1,.36,1),transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s cubic-bezier(.22,1,.36,1)}
+.pcard:hover{border-color:rgba(255,255,255,.14);transform:translateY(-4px);box-shadow:0 32px 80px rgba(0,0,0,.5)}
+/* hot card: glowing ring inspired by 21st.dev ring-2 ring-cyan-400/20 pattern */
+.pcard.hot{border-color:var(--green);background:rgba(0,168,107,.06);transform:scale(1.02);box-shadow:0 0 0 1px var(--green),0 0 48px rgba(0,168,107,.18),0 32px 80px rgba(0,0,0,.4)}
+.pcard.hot:hover{transform:scale(1.02) translateY(-4px);box-shadow:0 0 0 1px var(--green),0 0 64px rgba(0,168,107,.28),0 40px 90px rgba(0,0,0,.5)}
+.pbadge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.28rem .9rem;border-radius:100px;white-space:nowrap}
+.pname{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.85rem}
+.pprice{display:flex;align-items:baseline;gap:.2rem;margin-bottom:.5rem}
+.pcur{font-size:1.2rem;font-weight:700;color:var(--muted);font-family:'General Sans',sans-serif}
+/* large price num — light weight inspired by 21st.dev "font-extralight tracking-[-0.03em]" */
+.pamt{font-family:'General Sans',sans-serif;font-size:3.75rem;font-weight:300;color:var(--white);line-height:1;letter-spacing:-.04em}
+.pcard.hot .pamt{font-weight:600;color:var(--white)}
+.pcustom{font-family:'General Sans',sans-serif;font-size:3rem;font-weight:300;color:var(--white);letter-spacing:-.03em}
+.pper{font-size:.82rem;color:var(--muted2)}
+.pdesc{font-size:.82rem;color:var(--muted);line-height:1.65;margin:1rem 0 1.75rem}
+/* gradient divider from 21st.dev "card-divider" pattern */
+.pdivider{height:1px;background:linear-gradient(90deg,transparent,var(--green-border) 30%,rgba(255,255,255,.12) 50%,var(--green-border) 70%,transparent);margin-bottom:1.75rem}
+.pfeats{display:flex;flex-direction:column;gap:.7rem;margin-bottom:2rem}
+.pfeat{display:flex;align-items:center;gap:.65rem;font-size:.82rem}
+.pfeat.on{color:var(--off-white)}
+.pfeat.off{color:var(--muted2)}
+.pfeat-check{color:var(--green);flex-shrink:0}
+.pfeat-x{color:rgba(255,255,255,.2);flex-shrink:0}
+.pbtn{display:block;width:100%;text-align:center;padding:.9rem;border-radius:100px;font-size:.85rem;font-weight:700;transition:all var(--tr);cursor:pointer}
+.pbtn-prim{background:var(--green);color:#fff}
+.pbtn-prim:hover{background:#00c97e;box-shadow:0 0 28px var(--green-glow)}
+.pbtn-out{background:transparent;color:var(--off-white);border:1px solid var(--card-border)}
+.pbtn-out:hover{border-color:rgba(255,255,255,.2);background:rgba(255,255,255,.04)}
+
+/* ─── CONTACT ─── */
+/* 21st.dev — Dark Basic Grid (48px) behind the radial orb */
+#contact{padding:8rem 0;background:var(--bg2);background-image:linear-gradient(to right,rgba(100,116,139,.048) 1px,transparent 1px),linear-gradient(to bottom,rgba(100,116,139,.048) 1px,transparent 1px);background-size:48px 48px;position:relative;overflow:hidden}
+#contact::before{content:'';position:absolute;right:-200px;bottom:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(0,168,107,.07) 0%,transparent 65%);border-radius:50%;pointer-events:none}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;position:relative;z-index:1}
+.cform-wrap{background:var(--card);border:1px solid var(--card-border);border-radius:var(--r3);padding:2.75rem;backdrop-filter:blur(8px)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.fg{display:flex;flex-direction:column;gap:.45rem;margin-bottom:1.15rem}
+.fg label{font-size:.78rem;font-weight:600;color:rgba(232,234,240,.65);letter-spacing:.02em}
+.fg input,.fg select,.fg textarea{background:rgba(255,255,255,.04);border:1px solid var(--card-border);border-radius:var(--r);padding:.8rem 1rem;color:var(--white);font-size:.875rem;font-family:inherit;transition:border-color var(--tr),box-shadow var(--tr);outline:none}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--muted2)}
+.fg select option{background:#0b0f1a;color:var(--white)}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(0,168,107,.18)}
+.fg input.err,.fg select.err,.fg textarea.err{border-color:#f87171;box-shadow:0 0 0 3px rgba(248,113,113,.15)}
+.ferr{font-size:.72rem;color:#fca5a5;font-weight:500;margin-top:.2rem;display:none}
+.ferr.show{display:block}
+.fg textarea{resize:vertical;min-height:120px}
+.sbtn{display:inline-flex;align-items:center;gap:.5rem;background:var(--green);color:#fff;padding:.9rem 2rem;border-radius:100px;font-size:.875rem;font-weight:700;transition:all var(--tr);border:none;cursor:pointer}
+.sbtn:hover{background:#00c97e;box-shadow:0 0 28px var(--green-glow);transform:translateY(-1px)}
+.sbtn:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+.form-success{display:none;text-align:center;padding:3rem 2rem;color:var(--white)}
+.form-success svg{color:var(--green);margin-bottom:1.25rem}
+.form-success h3{font-family:'General Sans',sans-serif;font-size:1.5rem;font-weight:800;margin-bottom:.5rem}
+.form-success p{color:var(--muted);font-size:.875rem}
+/* contact info */
+.cinfo h3{font-family:'General Sans',sans-serif;font-size:2rem;font-weight:800;color:var(--white);margin-bottom:1rem;letter-spacing:-.03em;line-height:1.2}
+.cinfo>p{color:var(--muted);font-size:.9rem;line-height:1.75;margin-bottom:2.5rem}
+.cinfo-items{display:flex;flex-direction:column;gap:.85rem;margin-bottom:2.5rem}
+.citem{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;background:var(--card);border:1px solid var(--card-border);border-radius:var(--r);transition:border-color var(--tr)}
+.citem:hover{border-color:var(--green-border)}
+.citem-icon{width:40px;height:40px;background:var(--green-dim);border:1px solid var(--green-border);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--green);flex-shrink:0}
+.citem-lbl{font-size:.7rem;color:var(--muted2);font-weight:500;text-transform:uppercase;letter-spacing:.06em}
+.citem-val{font-size:.875rem;color:var(--white);font-weight:600;margin-top:.1rem}
+.socials{display:flex;gap:.65rem}
+.soc-btn{width:44px;height:44px;background:var(--card);border:1px solid var(--card-border);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:all var(--tr);cursor:pointer}
+.soc-btn:hover{background:var(--green-dim);border-color:var(--green-border);color:var(--green)}
+
+/* ─── CTA STRIP ─── */
+/* 21st.dev — Dark Dot Matrix (32px) via background-image on element */
+#cta-strip{padding:6rem 0;background:linear-gradient(135deg,#041a0f 0%,#062b18 50%,#041a0f 100%);background-image:radial-gradient(circle,rgba(255,255,255,.038) 1px,transparent 1px),linear-gradient(135deg,#041a0f 0%,#062b18 50%,#041a0f 100%);background-size:32px 32px,100% 100%;position:relative;overflow:hidden;text-align:center}
+#cta-strip::before{content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:800px;height:400px;background:radial-gradient(ellipse,rgba(0,168,107,.18) 0%,transparent 70%);pointer-events:none}
+.cta-strip-inner{position:relative;z-index:1;max-width:760px;margin:0 auto}
+.cta-strip-inner .eyebrow{margin-bottom:1.25rem}
+.cta-strip-inner h2{font-family:'General Sans',sans-serif;font-size:clamp(2rem,4.5vw,3.25rem);font-weight:800;color:var(--white);letter-spacing:-.03em;margin-bottom:1rem;line-height:1.1}
+.cta-strip-inner h2 em{color:var(--green);font-style:normal}
+.cta-strip-inner p{font-size:1rem;color:var(--muted);margin-bottom:2.25rem;line-height:1.75}
+.cta-strip-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+/* ─── FAQ ─── */
+/* 21st.dev — Dark Dot Matrix (40px) */
+#faq{padding:8rem 0;background:var(--bg2);background-image:radial-gradient(circle,rgba(255,255,255,.042) 1px,transparent 1px);background-size:40px 40px}
+.faq-wrap{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:.75rem}
+.fitem{background:var(--card);border:1px solid var(--card-border);border-radius:var(--r2);overflow:hidden;transition:border-color var(--tr)}
+.fitem.open{border-color:var(--green-border)}
+.fq{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.5rem 1.75rem;cursor:pointer;font-family:'General Sans',sans-serif;font-size:.95rem;font-weight:700;color:var(--white);transition:color var(--tr);min-height:44px;width:100%;text-align:left;background:none;border:none}
+.fq:hover{color:var(--green)}
+.fitem.open .fq{color:var(--green)}
+.fq-icon{width:28px;height:28px;min-width:28px;background:var(--green-dim);border:1px solid var(--green-border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--green);transition:transform .35s cubic-bezier(.22,1,.36,1),background var(--tr)}
+.fitem.open .fq-icon{transform:rotate(45deg);background:var(--green);color:#fff;border-color:var(--green)}
+.fq-icon svg{width:14px;height:14px}
+.fa{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.22,1,.36,1)}
+.fitem.open .fa{max-height:300px}
+.fa-inner{padding:0 1.75rem 1.5rem;font-size:.875rem;color:var(--muted);line-height:1.8;border-top:1px solid var(--card-border)}
+
+/* ─── FOOTER ─── */
+/* 21st.dev — Dark Dot Matrix (40px, very faint on deep black) */
+footer{background:#030507;background-image:radial-gradient(circle,rgba(255,255,255,.028) 1px,transparent 1px);background-size:40px 40px;padding:4rem 0 0;border-top:1px solid var(--card-border)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid var(--card-border)}
+.fbrand .logo{margin-bottom:1rem}
+.fbrand>p{font-size:.82rem;color:var(--muted2);line-height:1.75;max-width:270px;margin-bottom:1.5rem}
+.fcol h4{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:rgba(232,234,240,.35);margin-bottom:1.25rem}
+.fcol ul{display:flex;flex-direction:column;gap:.55rem}
+.fcol ul a{font-size:.82rem;color:var(--muted2);transition:color var(--tr)}
+.fcol ul a:hover{color:var(--green)}
+.fbot{display:flex;align-items:center;justify-content:space-between;padding:1.5rem 0;flex-wrap:wrap;gap:1rem}
+.fbot p{font-size:.78rem;color:rgba(232,234,240,.25)}
+.fbot em{color:var(--green);font-style:normal}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1024px){
+  .bento{grid-template-columns:repeat(4,1fr);grid-auto-rows:200px}
+  .bc-1{grid-column:span 4;grid-row:span 1}
+  .bc-2{grid-column:span 2}
+  .bc-3,.bc-4{grid-column:span 2}
+  .bc-5{grid-column:span 2}
+  .bc-6{grid-column:span 4}
+  .port-grid{grid-template-columns:repeat(2,1fr)}
+  .process-steps{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .bento{grid-template-columns:repeat(2,1fr);grid-auto-rows:auto}
+  .bc-1,.bc-2,.bc-3,.bc-4,.bc-5,.bc-6{grid-column:span 2}
+  .bc-3,.bc-4{grid-column:span 1}
+  .numbers-grid{grid-template-columns:repeat(2,1fr)}
+  .port-grid{grid-template-columns:1fr}
+  .about-grid{grid-template-columns:1fr}
+  .about-visual{display:none}
+  .tslide{grid-template-columns:1fr}
+  .price-grid{grid-template-columns:1fr}
+  .pcard.hot{transform:none}
+  .contact-grid{grid-template-columns:1fr;gap:3rem}
+  .frow{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
+  .process-steps{grid-template-columns:1fr}
+  .pstep-line{display:none}
+  .wrap{padding:0 1.5rem}
+}
+@media(max-width:480px){
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:1fr}
+  .numbers-grid{grid-template-columns:1fr 1fr}
+  .bento{grid-template-columns:1fr}
+  .bc-1,.bc-2,.bc-3,.bc-4,.bc-5,.bc-6{grid-column:span 1}
+}
+@media(max-width:768px){
+  #services,#portfolio,#about,#process,#testimonials,#pricing,#faq,#contact{padding:4.5rem 0}
+  #numbers{padding:3.5rem 0}
+  #cta-strip{padding:3rem 0}
+  .section-head{margin-bottom:2.5rem}
+  .cta-btns{flex-direction:column;align-items:center}
+}
+  </style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div id="progress"></div>
+
+<!-- NAV -->
+<header>
+  <nav id="nav">
+    <div class="nav-wrap">
+      <a href="index.html" class="logo" aria-label="SAW Incorporation home">
+        <span class="logo-s">S</span><span class="logo-aw">AW</span>
+        <span class="logo-inc">Incorporation</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="services.html">Services</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <a href="contact.html" class="nav-cta">
+        <i data-lucide="arrow-right" style="width:15px;height:15px;" aria-hidden="true"></i>
+        Get a Quote
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
+      <a href="services.html" class="mnav-link">Services</a>
+      <a href="portfolio.html" class="mnav-link">Portfolio</a>
+      <a href="about.html" class="mnav-link">About</a>
+      <a href="#pricing" class="mnav-link">Pricing</a>
+      <a href="contact.html" class="mnav-link">Contact</a>
+      <a href="contact.html" class="mnav-link">Get a Quote →</a>
+    </div>
+  </nav>
+</header>
+
+<main id="main-content">
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-vline hero-vline-l" aria-hidden="true"></div>
+  <div class="hero-vline hero-vline-r" aria-hidden="true"></div>
+  <div class="hero-orb orb1" aria-hidden="true"></div>
+  <div class="hero-orb orb2" aria-hidden="true"></div>
+  <div class="hero-orb orb3" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-badge" style="animation:wordUp .85s cubic-bezier(.25,.46,.45,.94) .0s both" aria-label="B2B Digital Agency">
+      <span class="hero-badge-dot" aria-hidden="true"></span>
+      B2B Digital Agency
+    </div>
+    <h1 class="hero-title">
+      <span class="line"><span class="word" style="animation-delay:.05s">We</span> <span class="word" style="animation-delay:.12s">Build</span> <span class="word accent" style="animation-delay:.19s">Digital</span></span>
+      <span class="line"><span class="word" style="animation-delay:.26s">Experiences</span> <span class="word" style="animation-delay:.33s">That</span></span>
+      <span class="line"><span class="word" style="animation-delay:.4s">Drive</span> <span class="word accent" style="animation-delay:.47s">Growth</span></span>
+    </h1>
+    <p class="hero-sub fade-up" style="transition-delay:.6s">
+      SAW Incorporation crafts premium websites and applications for forward-thinking businesses. From concept to launch — results that move the needle.
+    </p>
+    <div class="hero-actions fade-up" style="transition-delay:.72s">
+      <a href="#contact" class="btn-prim">
+        <i data-lucide="rocket" style="width:16px;height:16px;" aria-hidden="true"></i>
+        Start Your Project
+      </a>
+      <a href="#portfolio" class="btn-ghost">
+        <i data-lucide="eye" style="width:16px;height:16px;" aria-hidden="true"></i>
+        View Our Work
+      </a>
+    </div>
+    <div class="hero-stats fade-up" style="transition-delay:.84s" aria-label="Agency statistics">
+      <div class="hstat"><div class="hstat-n"><span class="counter" data-t="150">0</span><em>+</em></div><div class="hstat-l">Projects Delivered</div></div>
+      <div class="hstat"><div class="hstat-n"><span class="counter" data-t="80">0</span><em>+</em></div><div class="hstat-l">Clients Served</div></div>
+      <div class="hstat"><div class="hstat-n"><span class="counter" data-t="6">0</span><em>+</em></div><div class="hstat-l">Years Experience</div></div>
+      <div class="hstat"><div class="hstat-n"><span class="counter" data-t="98">0</span><em>%</em></div><div class="hstat-l">Satisfaction Rate</div></div>
+    </div>
+  </div>
+  <div class="scroll-ind" aria-hidden="true">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track">
+    <div class="marquee-item"><span>✦</span> Web Design</div>
+    <div class="marquee-item"><span>✦</span> Web Development</div>
+    <div class="marquee-item"><span>✦</span> Mobile Apps</div>
+    <div class="marquee-item"><span>✦</span> E-Commerce</div>
+    <div class="marquee-item"><span>✦</span> SEO & Marketing</div>
+    <div class="marquee-item"><span>✦</span> UI / UX Design</div>
+    <div class="marquee-item"><span>✦</span> SaaS Development</div>
+    <div class="marquee-item"><span>✦</span> API Integration</div>
+    <div class="marquee-item"><span>✦</span> Web Design</div>
+    <div class="marquee-item"><span>✦</span> Web Development</div>
+    <div class="marquee-item"><span>✦</span> Mobile Apps</div>
+    <div class="marquee-item"><span>✦</span> E-Commerce</div>
+    <div class="marquee-item"><span>✦</span> SEO & Marketing</div>
+    <div class="marquee-item"><span>✦</span> UI / UX Design</div>
+    <div class="marquee-item"><span>✦</span> SaaS Development</div>
+    <div class="marquee-item"><span>✦</span> API Integration</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow fade-up"><span class="eyebrow-dot"></span>What We Do</div>
+      <h2 class="h2 fade-up" style="color:var(--white);transition-delay:.1s">Services Built for<br/>Business Success</h2>
+      <p class="body-lg fade-up" style="max-width:560px;margin:.75rem auto 0;transition-delay:.2s">End-to-end digital solutions — from pixel-perfect design to bulletproof engineering.</p>
+    </div>
+    <div class="bento">
+      <div class="bcard bc-1 fade-up">
+        <div class="bcard-num" aria-hidden="true">01</div>
+        <div class="bcard-tag">Core Service</div>
+        <div class="bcard-icon"><i data-lucide="code-2" style="width:22px;height:22px;" aria-hidden="true"></i></div>
+        <h3>Web Development</h3>
+        <p>Scalable, high-performance web applications built with modern frameworks. Clean code, fast load times, and bulletproof reliability for businesses that demand the best.</p>
+      </div>
+      <div class="bcard bc-2 fade-up" style="transition-delay:.1s">
+        <div class="bcard-icon"><i data-lucide="layout-template" style="width:20px;height:20px;" aria-hidden="true"></i></div>
+        <h3>Web Design</h3>
+        <p>Stunning, conversion-focused UI/UX that captures your brand and impresses from first click.</p>
+        <div class="bcard-arrow" aria-hidden="true"><i data-lucide="arrow-up-right" style="width:16px;height:16px;"></i></div>
+      </div>
+      <div class="bcard bc-3 fade-up" style="transition-delay:.15s">
+        <div class="bcard-icon"><i data-lucide="smartphone" style="width:20px;height:20px;" aria-hidden="true"></i></div>
+        <h3>Mobile Apps</h3>
+        <p>iOS &amp; Android apps your users will love.</p>
+        <div class="bcard-arrow" aria-hidden="true"><i data-lucide="arrow-up-right" style="width:16px;height:16px;"></i></div>
+      </div>
+      <div class="bcard bc-4 fade-up" style="transition-delay:.2s">
+        <div class="bcard-icon"><i data-lucide="trending-up" style="width:20px;height:20px;" aria-hidden="true"></i></div>
+        <h3>SEO &amp; Marketing</h3>
+        <p>Data-driven campaigns that put you front and center.</p>
+        <div class="bcard-arrow" aria-hidden="true"><i data-lucide="arrow-up-right" style="width:16px;height:16px;"></i></div>
+      </div>
+      <div class="bcard bc-5 fade-up" style="transition-delay:.25s">
+        <div class="bcard-icon"><i data-lucide="shopping-bag" style="width:20px;height:20px;" aria-hidden="true"></i></div>
+        <h3>E-Commerce</h3>
+        <p>Powerful stores with seamless checkout and payment integrations that drive revenue at scale.</p>
+        <div class="bcard-arrow" aria-hidden="true"><i data-lucide="arrow-up-right" style="width:16px;height:16px;"></i></div>
+      </div>
+      <div class="bcard bc-6 fade-up" style="transition-delay:.3s">
+        <div class="bcard-num" aria-hidden="true">06</div>
+        <div class="bcard-icon"><i data-lucide="shield-check" style="width:20px;height:20px;" aria-hidden="true"></i></div>
+        <h3>Maintenance &amp; Support</h3>
+        <p>Ongoing security updates, performance optimizations, and 24/7 technical support to keep your digital presence running at its absolute best.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section id="numbers">
+  <div class="wrap">
+    <div class="numbers-grid">
+      <div class="num-item fade-up">
+        <div class="num-big"><span class="counter" data-t="150">0</span><em>+</em></div>
+        <div class="num-label">Projects Delivered</div>
+      </div>
+      <div class="num-item fade-up" style="transition-delay:.1s">
+        <div class="num-big"><span class="counter" data-t="80">0</span><em>+</em></div>
+        <div class="num-label">Happy Clients</div>
+      </div>
+      <div class="num-item fade-up" style="transition-delay:.2s">
+        <div class="num-big"><span class="counter" data-t="12">0</span><em>+</em></div>
+        <div class="num-label">Industries Served</div>
+      </div>
+      <div class="num-item fade-up" style="transition-delay:.3s">
+        <div class="num-big"><span class="counter" data-t="98">0</span><em>%</em></div>
+        <div class="num-label">Client Satisfaction</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow fade-up"><span class="eyebrow-dot"></span>Our Work</div>
+      <h2 class="h2 fade-up" style="color:var(--white);transition-delay:.1s">Projects We're Proud Of</h2>
+      <p class="body-lg fade-up" style="max-width:520px;margin:.75rem auto 0;transition-delay:.2s">Transforming business challenges into digital opportunities across industries.</p>
+    </div>
+    <div class="port-grid">
+      <div class="port-card clip-up pg1" tabindex="0" role="article" aria-label="NexaBank Dashboard — Fintech project">
+        <div class="port-img" aria-hidden="true"><i data-lucide="landmark" class="port-img-icon" style="width:88px;height:88px;" aria-hidden="true"></i></div>
+        <div class="port-overlay">
+          <span class="port-tag">Fintech</span>
+          <h3>NexaBank Dashboard</h3>
+          <p>Full-featured banking portal with real-time analytics and secure transactions.</p>
+          <span class="port-link">View Case Study <i data-lucide="arrow-up-right" style="width:13px;height:13px;" aria-hidden="true"></i></span>
+        </div>
+      </div>
+      <div class="port-card clip-up pg2" style="transition-delay:.15s" tabindex="0" role="article" aria-label="HealthSync Platform — Healthcare project">
+        <div class="port-img" aria-hidden="true"><i data-lucide="heart-pulse" class="port-img-icon" style="width:88px;height:88px;" aria-hidden="true"></i></div>
+        <div class="port-overlay">
+          <span class="port-tag">Healthcare</span>
+          <h3>HealthSync Platform</h3>
+          <p>Patient management system with telemedicine, scheduling and EHR integration.</p>
+          <span class="port-link">View Case Study <i data-lucide="arrow-up-right" style="width:13px;height:13px;" aria-hidden="true"></i></span>
+        </div>
+      </div>
+      <div class="port-card clip-up pg3" style="transition-delay:.3s" tabindex="0" role="article" aria-label="FlowDesk CRM — SaaS project">
+        <div class="port-img" aria-hidden="true"><i data-lucide="layout-dashboard" class="port-img-icon" style="width:88px;height:88px;" aria-hidden="true"></i></div>
+        <div class="port-overlay">
+          <span class="port-tag">SaaS</span>
+          <h3>FlowDesk CRM</h3>
+          <p>B2B CRM with pipeline management, AI insights, and team collaboration tools.</p>
+          <span class="port-link">View Case Study <i data-lucide="arrow-up-right" style="width:13px;height:13px;" aria-hidden="true"></i></span>
+        </div>
+      </div>
+      <div class="port-card clip-up pg4" style="transition-delay:.0s" tabindex="0" role="article" aria-label="LuxCart Store — E-Commerce project">
+        <div class="port-img" aria-hidden="true"><i data-lucide="shopping-bag" class="port-img-icon" style="width:88px;height:88px;" aria-hidden="true"></i></div>
+        <div class="port-overlay">
+          <span class="port-tag">E-Commerce</span>
+          <h3>LuxCart Store</h3>
+          <p>Premium e-commerce platform with AR product preview and smart recommendations.</p>
+          <span class="port-link">View Case Study <i data-lucide="arrow-up-right" style="width:13px;height:13px;" aria-hidden="true"></i></span>
+        </div>
+      </div>
+      <div class="port-card clip-up pg5" style="transition-delay:.15s" tabindex="0" role="article" aria-label="TrackPoint Fleet — Logistics project">
+        <div class="port-img" aria-hidden="true"><i data-lucide="truck" class="port-img-icon" style="width:88px;height:88px;" aria-hidden="true"></i></div>
+        <div class="port-overlay">
+          <span class="port-tag">Logistics</span>
+          <h3>TrackPoint Fleet</h3>
+          <p>Real-time fleet management with GPS tracking and automated dispatch routing.</p>
+          <span class="port-link">View Case Study <i data-lucide="arrow-up-right" style="width:13px;height:13px;" aria-hidden="true"></i></span>
+        </div>
+      </div>
+      <div class="port-card clip-up pg6" style="transition-delay:.3s" tabindex="0" role="article" aria-label="LearnPath LMS — Education project">
+        <div class="port-img" aria-hidden="true"><i data-lucide="graduation-cap" class="port-img-icon" style="width:88px;height:88px;" aria-hidden="true"></i></div>
+        <div class="port-overlay">
+          <span class="port-tag">Education</span>
+          <h3>LearnPath LMS</h3>
+          <p>Interactive learning management system with video courses and progress tracking.</p>
+          <span class="port-link">View Case Study <i data-lucide="arrow-up-right" style="width:13px;height:13px;" aria-hidden="true"></i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-text fade-left">
+        <div class="eyebrow">About SAW</div>
+        <h2 class="h2" style="color:var(--white);margin-bottom:1.5rem">Building the Web,<br/>One Business at a Time</h2>
+        <p>SAW Incorporation is a B2B-focused digital agency dedicated to helping businesses establish and grow their online presence. We blend strategy, design, and engineering to build products that work beautifully and perform exceptionally.</p>
+        <p>Our team brings together seasoned designers, full-stack engineers, and growth strategists passionate about delivering real business impact — not just beautiful pixels.</p>
+        <div class="about-feats">
+          <div class="afeat">
+            <div class="afeat-icon"><i data-lucide="target" style="width:17px;height:17px;" aria-hidden="true"></i></div>
+            <div><h4>Results-Driven Approach</h4><p>Every decision tied to your KPIs and growth targets.</p></div>
+          </div>
+          <div class="afeat">
+            <div class="afeat-icon"><i data-lucide="users" style="width:17px;height:17px;" aria-hidden="true"></i></div>
+            <div><h4>Dedicated Project Teams</h4><p>A dedicated team — not a revolving door of contractors.</p></div>
+          </div>
+          <div class="afeat">
+            <div class="afeat-icon"><i data-lucide="zap" style="width:17px;height:17px;" aria-hidden="true"></i></div>
+            <div><h4>Agile &amp; Fast Delivery</h4><p>Sprint-based workflows mean you see progress from day one.</p></div>
+          </div>
+          <div class="afeat">
+            <div class="afeat-icon"><i data-lucide="lock" style="width:17px;height:17px;" aria-hidden="true"></i></div>
+            <div><h4>Enterprise-Grade Security</h4><p>Security-first architecture protecting your business and customers.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="about-visual fade-right">
+        <div class="av-float">
+          <div class="av-float-dot"></div>
+          <div><strong>Currently Available</strong><span>Taking on new projects</span></div>
+        </div>
+        <div class="av-main">
+          <div class="av-grid">
+            <div class="av-stat"><div class="av-stat-n"><span class="counter" data-t="150">0</span><em>+</em></div><div class="av-stat-l">Projects Done</div></div>
+            <div class="av-stat"><div class="av-stat-n"><span class="counter" data-t="80">0</span><em>+</em></div><div class="av-stat-l">Happy Clients</div></div>
+            <div class="av-stat"><div class="av-stat-n"><span class="counter" data-t="15">0</span><em>+</em></div><div class="av-stat-l">Team Members</div></div>
+            <div class="av-stat"><div class="av-stat-n"><span class="counter" data-t="12">0</span><em>+</em></div><div class="av-stat-l">Industries</div></div>
+          </div>
+        </div>
+        <div class="av-badge">
+          <div class="av-badge-icon"><i data-lucide="award" style="width:18px;height:18px;" aria-hidden="true"></i></div>
+          <div><strong>Top Rated Agency</strong><span>2022–2025 Excellence Award</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow fade-up"><span class="eyebrow-dot"></span>How We Work</div>
+      <h2 class="h2 fade-up" style="color:var(--white);transition-delay:.1s">Our Process</h2>
+      <p class="body-lg fade-up" style="max-width:500px;margin:.75rem auto 0;transition-delay:.2s">A proven 4-step system that delivers exceptional results, every time.</p>
+    </div>
+    <div class="process-steps">
+      <div class="pstep fade-up">
+        <div class="pstep-num" aria-hidden="true">01</div>
+        <div class="pstep-icon"><i data-lucide="search" style="width:20px;height:20px;" aria-hidden="true"></i></div>
+        <h3>Discovery</h3>
+        <p>Deep-dive into your business goals, audience, and competitive landscape to craft a winning strategy.</p>
+        <div class="pstep-line" aria-hidden="true"></div>
+      </div>
+      <div class="pstep fade-up" style="transition-delay:.1s">
+        <div class="pstep-num" aria-hidden="true">02</div>
+        <div class="pstep-icon"><i data-lucide="pen-tool" style="width:20px;height:20px;" aria-hidden="true"></i></div>
+        <h3>Design</h3>
+        <p>Pixel-perfect UI/UX design with interactive prototypes. You see it before we build it.</p>
+        <div class="pstep-line" aria-hidden="true"></div>
+      </div>
+      <div class="pstep fade-up" style="transition-delay:.2s">
+        <div class="pstep-num" aria-hidden="true">03</div>
+        <div class="pstep-icon"><i data-lucide="code-2" style="width:20px;height:20px;" aria-hidden="true"></i></div>
+        <h3>Develop</h3>
+        <p>Agile sprints with weekly demos. Clean code, rigorous testing, zero technical debt.</p>
+        <div class="pstep-line" aria-hidden="true"></div>
+      </div>
+      <div class="pstep fade-up" style="transition-delay:.3s">
+        <div class="pstep-num" aria-hidden="true">04</div>
+        <div class="pstep-icon"><i data-lucide="rocket" style="width:20px;height:20px;" aria-hidden="true"></i></div>
+        <h3>Launch &amp; Grow</h3>
+        <p>Smooth deployment, performance monitoring, and ongoing support to keep you ahead.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<section id="cta-strip">
+  <div class="wrap">
+    <div class="cta-strip-inner">
+      <div class="eyebrow fade-up"><span class="eyebrow-dot"></span>Ready to Start?</div>
+      <h2 class="fade-up" style="transition-delay:.1s">Your Next Big Thing<br/>Starts <em>Right Here</em></h2>
+      <p class="fade-up" style="transition-delay:.2s">Join 80+ forward-thinking businesses that chose SAW to transform their digital presence. Let's build something remarkable together.</p>
+      <div class="cta-strip-btns fade-up" style="transition-delay:.3s">
+        <a href="#contact" class="btn-prim">
+          <i data-lucide="rocket" style="width:16px;height:16px;" aria-hidden="true"></i>
+          Start Your Project
+        </a>
+        <a href="#portfolio" class="btn-ghost">
+          <i data-lucide="eye" style="width:16px;height:16px;" aria-hidden="true"></i>
+          See Our Work First
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow fade-up"><span class="eyebrow-dot"></span>Testimonials</div>
+      <h2 class="h2 fade-up" style="color:var(--white);transition-delay:.1s">What Our Clients Say</h2>
+      <p class="body-lg fade-up" style="max-width:480px;margin:.75rem auto 0;transition-delay:.2s">We let results speak — but our clients like to chime in too.</p>
+    </div>
+    <div class="tcarousel fade-up" style="transition-delay:.2s">
+      <div class="ttrack" id="ttrack">
+        <!-- Slide 1 -->
+        <div class="tslide">
+          <div class="tcard">
+            <div class="tcard-top"><div class="tstars">★★★★★</div><div class="tquote-mark">"</div></div>
+            <p class="tquote">SAW Incorporation completely transformed our online presence. The new platform increased our lead conversion rate by 47% within the first quarter. Professional, communicative, and delivered ahead of schedule.</p>
+            <div class="tauthor">
+              <div class="tavatar av-g">MR</div>
+              <div><div class="tname">Marcus Reynolds</div><div class="trole">CEO, NexaFinance Group</div></div>
+            </div>
+          </div>
+          <div class="tcard">
+            <div class="tcard-top"><div class="tstars">★★★★★</div><div class="tquote-mark">"</div></div>
+            <p class="tquote">We needed a complex healthcare portal built fast. SAW delivered a robust, HIPAA-compliant system in 10 weeks. The attention to UX detail was incredible — our patients actually enjoy using the platform.</p>
+            <div class="tauthor">
+              <div class="tavatar av-b">SK</div>
+              <div><div class="tname">Dr. Sarah Kim</div><div class="trole">CTO, HealthSync Medical</div></div>
+            </div>
+          </div>
+          <div class="tcard">
+            <div class="tcard-top"><div class="tstars">★★★★★</div><div class="tquote-mark">"</div></div>
+            <p class="tquote">From the very first call, SAW felt like a true partner. They pushed back on ideas that wouldn't work and proposed better solutions. Our e-commerce revenue grew 3× after launch.</p>
+            <div class="tauthor">
+              <div class="tavatar av-p">JT</div>
+              <div><div class="tname">James Torres</div><div class="trole">Founder, LuxCart Retail</div></div>
+            </div>
+          </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="tslide">
+          <div class="tcard">
+            <div class="tcard-top"><div class="tstars">★★★★★</div><div class="tquote-mark">"</div></div>
+            <p class="tquote">Our SaaS platform needed a complete overhaul. SAW rebuilt everything from the ground up — cleaner architecture, faster performance, and a UI our users rave about. Best investment we've made.</p>
+            <div class="tauthor">
+              <div class="tavatar av-g">AL</div>
+              <div><div class="tname">Amanda Liu</div><div class="trole">Product Director, FlowDesk Inc.</div></div>
+            </div>
+          </div>
+          <div class="tcard">
+            <div class="tcard-top"><div class="tstars">★★★★★</div><div class="tquote-mark">"</div></div>
+            <p class="tquote">SAW's team understood logistics complexity immediately. The fleet tracking system handles 500+ vehicles in real-time without a hitch. Operational efficiency improved 35% in the first month.</p>
+            <div class="tauthor">
+              <div class="tavatar av-b">RN</div>
+              <div><div class="tname">Robert Nkosi</div><div class="trole">Operations VP, TrackPoint</div></div>
+            </div>
+          </div>
+          <div class="tcard">
+            <div class="tcard-top"><div class="tstars">★★★★★</div><div class="tquote-mark">"</div></div>
+            <p class="tquote">We launched our LMS with SAW and enrolled 10,000 students in the first month. The platform is rock-solid, beautiful, and our instructors love how easy it is to create courses.</p>
+            <div class="tauthor">
+              <div class="tavatar av-p">EP</div>
+              <div><div class="tname">Elena Petrova</div><div class="trole">CEO, LearnPath Education</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tdots" id="tdots">
+        <button class="tdot on" data-i="0" aria-label="Slide 1"></button>
+        <button class="tdot" data-i="1" aria-label="Slide 2"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="price-blob pb1" aria-hidden="true"></div>
+  <div class="price-blob pb2" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow fade-up"><span class="eyebrow-dot"></span>Pricing</div>
+      <h2 class="h2 fade-up" style="color:var(--white);transition-delay:.1s">Transparent Pricing,<br/>No Surprises</h2>
+      <p class="body-lg fade-up" style="max-width:500px;margin:.75rem auto 0;transition-delay:.2s">All plans include our quality guarantee and dedicated support.</p>
+    </div>
+    <div class="price-grid">
+      <div class="pcard fade-up">
+        <div class="pname">Starter</div>
+        <div class="pprice"><span class="pcur">$</span><span class="pamt">999</span></div>
+        <div class="pper">one-time project</div>
+        <p class="pdesc">Perfect for small businesses looking to establish a professional online presence.</p>
+        <div class="pdivider"></div>
+        <ul class="pfeats">
+          <li class="pfeat on"><i data-lucide="check" class="pfeat-check" style="width:15px;height:15px;" aria-hidden="true"></i>Up to 5-page website</li>
+          <li class="pfeat on"><i data-lucide="check" class="pfeat-check" style="width:15px;height:15px;" aria-hidden="true"></i>Mobile responsive design</li>
+          <li class="pfeat on"><i data-lucide="check" class="pfeat-check" style="width:15px;height:15px;" aria-hidden="true"></i>Contact form integration</li>
+          <li class="pfeat on"><i data-lucide="check" class="pfeat-check" style="width:15px;height:15px;" aria-hidden="true"></i>Basic SEO setup</li>
+          <li class="pfeat on"><i data-lucide="check" class="pfeat-check" style="width:15px;height:15px;" aria-hidden="true"></i>2 revision rounds</li>
+          <li class="pfeat off"><i data-lucide="x" class="pfeat-x" style="width:15px;height:15px;" aria-hidden="true"></i>Custom web app</li>
+          <li class="pfeat off"><i data-lucide="x" class="pfeat-x" style="width:15px;height:15px;" aria-hidden="true"></i>E-Commerce functionality</li>
+        </ul>
+        <a href="#contact" class="pbtn pbtn-out">Get Started</a>
+      </div>
+      <div class="pcard hot fade-up" style="transition-delay:.1s">
+        <div class="pbadge">Most Popular</div>
+        <div class="pname" style="color:var(--green)">Growth</div>
+        <div class="pprice"><span class="pcur">$</span><span class="pamt">2,499</span></div>
+        <div class="pper">one-time project</div>
+        <p class="pdesc">Ideal for growing businesses that need a powerful web presence with advanced features.</p>
+        <div class="pdivider"></div>
+        <ul class="pfeats">
+          <li class="pfeat on"><i data-lucide="check" class="pfeat-check" style="width:15px;height:15px;" aria-hidden="true"></i>Up to 15-page website</li>
+          <li class="pfeat on"><i data-lucide="check" class="pfeat-check" style="width:15px;height:15px;" aria-hidden="true"></i>Custom UI/UX design</li>
+          <li class="pfeat on"><i data-lucide="check" class="pfeat-check" style="width:15px;height:15px;" aria-hidden="true"></i>CMS integration</li>
+          <li class="pfeat on"><i data-lucide="check" class="pfeat-check" style="width:15px;height:15px;" aria-hidden="true"></i>E-Commerce (up to 50 products)</li>
+          <li class="pfeat on"><i data-lucide="check" class="pfeat-check" style="width:15px;height:15px;" aria-hidden="true"></i>Full SEO optimization</li>
+          <li class="pfeat on"><i data-lucide="check" class="pfeat-check" style="width:15px;height:15px;" aria-hidden="true"></i>5 revision rounds</li>
+          <li class="pfeat on"><i data-lucide="check" class="pfeat-check" style="width:15px;height:15px;" aria-hidden="true"></i>3 months maintenance</li>
+        </ul>
+        <a href="#contact" class="pbtn pbtn-prim">Get Started</a>
+      </div>
+      <div class="pcard fade-up" style="transition-delay:.2s">
+        <div class="pname">Enterprise</div>
+        <div class="pprice"><span class="pcustom">Custom</span></div>
+        <div class="pper">tailored to your needs</div>
+        <p class="pdesc">For large businesses requiring complex applications, integrations, and dedicated support.</p>
+        <div class="pdivider"></div>
+        <ul class="pfeats">
+          <li class="pfeat on"><i data-lucide="check" class="pfeat-check" style="width:15px;height:15px;" aria-hidden="true"></i>Unlimited pages &amp; features</li>
+          <li class="pfeat on"><i data-lucide="check" class="pfeat-check" style="width:15px;height:15px;" aria-hidden="true"></i>Custom web application</li>
+          <li class="pfeat on"><i data-lucide="check" class="pfeat-check" style="width:15px;height:15px;" aria-hidden="true"></i>Mobile app development</li>
+          <li class="pfeat on"><i data-lucide="check" class="pfeat-check" style="width:15px;height:15px;" aria-hidden="true"></i>API &amp; 3rd-party integrations</li>
+          <li class="pfeat on"><i data-lucide="check" class="pfeat-check" style="width:15px;height:15px;" aria-hidden="true"></i>Unlimited revisions</li>
+          <li class="pfeat on"><i data-lucide="check" class="pfeat-check" style="width:15px;height:15px;" aria-hidden="true"></i>12 months maintenance</li>
+          <li class="pfeat on"><i data-lucide="check" class="pfeat-check" style="width:15px;height:15px;" aria-hidden="true"></i>Priority 24/7 support</li>
+        </ul>
+        <a href="#contact" class="pbtn pbtn-out">Contact Sales</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow fade-up"><span class="eyebrow-dot"></span>FAQ</div>
+      <h2 class="h2 fade-up" style="color:var(--white);transition-delay:.1s">Frequently Asked<br/>Questions</h2>
+      <p class="body-lg fade-up" style="max-width:500px;margin:.75rem auto 0;transition-delay:.2s">Everything you need to know before we get started.</p>
+    </div>
+    <div class="faq-wrap fade-up" style="transition-delay:.2s">
+      <div class="fitem open">
+        <button class="fq" aria-expanded="true">
+          How long does a typical project take?
+          <span class="fq-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="fa"><div class="fa-inner">Project timelines vary based on complexity. A standard website typically takes 4–6 weeks, while custom web applications or mobile apps range from 8–16 weeks. After your initial consultation, we'll provide a detailed timeline scoped specifically to your project.</div></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false">
+          What is your payment structure?
+          <span class="fq-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="fa"><div class="fa-inner">We work on a milestone-based payment schedule to keep everything transparent. Typically: 30% upfront to kick off the project, 40% at the design approval milestone, and the final 30% upon delivery. Enterprise contracts are structured individually.</div></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false">
+          Do you work with international clients?
+          <span class="fq-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="fa"><div class="fa-inner">Absolutely. We work with clients worldwide across multiple time zones. Our team has successfully delivered projects for clients in North America, Europe, the Middle East, and Southeast Asia. We use async-first communication tools to keep collaboration seamless regardless of location.</div></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false">
+          What technologies do you use?
+          <span class="fq-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="fa"><div class="fa-inner">We're tech-agnostic and choose the right tools for each project. Our stack includes React, Next.js, Vue, Node.js, Python (Django/FastAPI), PostgreSQL, and MongoDB on the backend. For mobile we build with React Native and Flutter. We also integrate Shopify, WordPress, and headless CMS platforms where needed.</div></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false">
+          Do you offer post-launch support and maintenance?
+          <span class="fq-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="fa"><div class="fa-inner">Yes — every project includes a 30-day post-launch support window at no extra cost. Beyond that, we offer monthly maintenance retainers that cover security patches, performance monitoring, content updates, and priority bug fixes. Our Growth and Enterprise plans include extended maintenance periods built in.</div></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" aria-expanded="false">
+          Will I own the code and design assets?
+          <span class="fq-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="fa"><div class="fa-inner">100%. Upon final payment, you receive full ownership of all source code, design files (Figma), and assets. Nothing is locked behind proprietary systems. We hand everything over with clean documentation so your in-house team or any future agency can continue the work without friction.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow fade-up"><span class="eyebrow-dot"></span>Contact Us</div>
+      <h2 class="h2 fade-up" style="color:var(--white);transition-delay:.1s">Let's Build Something<br/>Great Together</h2>
+      <p class="body-lg fade-up" style="max-width:500px;margin:.75rem auto 0;transition-delay:.2s">Tell us about your project and we'll respond within 24 hours.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="cform-wrap fade-left">
+        <form id="cform" novalidate aria-label="Contact form">
+          <div class="frow">
+            <div class="fg">
+              <label for="f-name">Full Name *</label>
+              <input type="text" id="f-name" name="name" placeholder="John Smith" required autocomplete="name" aria-required="true" aria-describedby="e-name" />
+              <span class="ferr" id="e-name" role="alert">Please enter your name.</span>
+            </div>
+            <div class="fg">
+              <label for="f-email">Email Address *</label>
+              <input type="email" id="f-email" name="email" placeholder="john@company.com" required inputmode="email" autocomplete="email" aria-required="true" aria-describedby="e-email" />
+              <span class="ferr" id="e-email" role="alert">Please enter a valid email.</span>
+            </div>
+          </div>
+          <div class="frow">
+            <div class="fg">
+              <label for="f-co">Company Name</label>
+              <input type="text" id="f-co" name="company" placeholder="Your Company" autocomplete="organization" />
+            </div>
+            <div class="fg">
+              <label for="f-svc">Service Needed *</label>
+              <select id="f-svc" name="service" required aria-required="true" aria-describedby="e-svc">
+                <option value="" disabled selected>Select a service</option>
+                <option value="web-design">Web Design</option>
+                <option value="web-dev">Web Development</option>
+                <option value="mobile-app">Mobile App</option>
+                <option value="ecommerce">E-Commerce</option>
+                <option value="seo">SEO &amp; Marketing</option>
+                <option value="maintenance">Maintenance &amp; Support</option>
+                <option value="other">Other</option>
+              </select>
+              <span class="ferr" id="e-svc" role="alert">Please select a service.</span>
+            </div>
+          </div>
+          <div class="fg">
+            <label for="f-msg">Project Details *</label>
+            <textarea id="f-msg" name="message" placeholder="Tell us about your project, goals, and timeline..." required aria-required="true" aria-describedby="e-msg"></textarea>
+            <span class="ferr" id="e-msg" role="alert">Please describe your project.</span>
+          </div>
+          <button type="submit" class="sbtn" id="sbtn">
+            <i data-lucide="send" style="width:16px;height:16px;" aria-hidden="true"></i>
+            <span id="sbtn-txt">Send Message</span>
+          </button>
+        </form>
+        <div class="form-success" id="fsuccess">
+          <i data-lucide="circle-check-big" style="width:52px;height:52px;" aria-hidden="true"></i>
+          <h3>Message Sent!</h3>
+          <p>Our team will review your project and respond within 24 hours.</p>
+        </div>
+      </div>
+      <div class="cinfo fade-right">
+        <h3>Get in Touch</h3>
+        <p>Have a project in mind? We'd love to hear about it. Reach out directly through any of the channels below.</p>
+        <div class="cinfo-items">
+          <div class="citem">
+            <div class="citem-icon"><i data-lucide="mail" style="width:18px;height:18px;" aria-hidden="true"></i></div>
+            <div><div class="citem-lbl">Email</div><div class="citem-val">hello@sawinc.com</div></div>
+          </div>
+          <div class="citem">
+            <div class="citem-icon"><i data-lucide="phone" style="width:18px;height:18px;" aria-hidden="true"></i></div>
+            <div><div class="citem-lbl">Phone</div><div class="citem-val">+1 (555) 420-7890</div></div>
+          </div>
+          <div class="citem">
+            <div class="citem-icon"><i data-lucide="map-pin" style="width:18px;height:18px;" aria-hidden="true"></i></div>
+            <div><div class="citem-lbl">Office</div><div class="citem-val">New York, NY — Remote Worldwide</div></div>
+          </div>
+          <div class="citem">
+            <div class="citem-icon"><i data-lucide="clock" style="width:18px;height:18px;" aria-hidden="true"></i></div>
+            <div><div class="citem-lbl">Response Time</div><div class="citem-val">Within 24 hours</div></div>
+          </div>
+        </div>
+        <p style="font-size:.72rem;color:var(--muted2);font-weight:600;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.85rem">Follow Us</p>
+        <div class="socials">
+          <a href="#" class="soc-btn" aria-label="LinkedIn">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="#" class="soc-btn" aria-label="Twitter / X">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="#" class="soc-btn" aria-label="Instagram">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+          </a>
+          <a href="#" class="soc-btn" aria-label="GitHub">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="fbrand">
+        <div class="logo" style="margin-bottom:1rem">
+          <span class="logo-s">S</span><span class="logo-aw">AW</span>
+          <span class="logo-inc">Incorporation</span>
+        </div>
+        <p>Premium digital experiences for forward-thinking businesses. From startups to enterprises — your growth is our mission.</p>
+        <div class="socials">
+          <a href="#" class="soc-btn" aria-label="LinkedIn"><svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="#" class="soc-btn" aria-label="Twitter"><svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="#" class="soc-btn" aria-label="Instagram"><svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></a>
+        </div>
+      </div>
+      <div class="fcol">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Web Design</a></li>
+          <li><a href="#services">Web Development</a></li>
+          <li><a href="#services">Mobile Apps</a></li>
+          <li><a href="#services">E-Commerce</a></li>
+          <li><a href="#services">SEO &amp; Marketing</a></li>
+          <li><a href="#services">Maintenance</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="mailto:hello@sawinc.com">hello@sawinc.com</a></li>
+          <li><a href="tel:+15554207890">+1 (555) 420-7890</a></li>
+          <li><a href="#">New York, NY</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fbot">
+      <p>&copy; 2025 <em>SAW Incorporation</em>. All rights reserved.</p>
+      <p>Built with precision by <em>SAW</em></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+lucide.createIcons();
+
+// ── Scroll: progress + nav (single RAF-throttled handler) ──
+const prog = document.getElementById('progress');
+const nav = document.getElementById('nav');
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (ticking) return;
+  ticking = true;
+  requestAnimationFrame(() => {
+    const sy = window.scrollY;
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    prog.style.width = (sy / h * 100) + '%';
+    nav.classList.toggle('stuck', sy > 60);
+    ticking = false;
+  });
+}, { passive: true });
+
+// ── Hamburger ──
+const hbg = document.getElementById('hamburger');
+const mnav = document.getElementById('mobile-nav');
+function closeMenu() {
+  hbg.classList.remove('open');
+  mnav.classList.remove('open');
+  hbg.setAttribute('aria-expanded', 'false');
+  hbg.setAttribute('aria-label', 'Open navigation');
+}
+hbg.addEventListener('click', () => {
+  const o = hbg.classList.toggle('open');
+  mnav.classList.toggle('open');
+  hbg.setAttribute('aria-expanded', String(o));
+  hbg.setAttribute('aria-label', o ? 'Close navigation' : 'Open navigation');
+});
+document.querySelectorAll('.mnav-link').forEach(a => a.addEventListener('click', closeMenu));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+// ── Smooth scroll ──
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 76, behavior: 'smooth' }); }
+  });
+});
+
+// ── Active nav ──
+const navAs = document.querySelectorAll('.nav-links a[href^="#"]');
+const sects = ['hero','services','portfolio','about','process','cta-strip','testimonials','pricing','faq','contact']
+  .map(id => document.getElementById(id)).filter(Boolean);
+new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting)
+      navAs.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+  });
+}, { rootMargin: '-35% 0px -60% 0px' }).observe(sects[0]);
+sects.forEach(s => new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting)
+      navAs.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+  });
+}, { rootMargin: '-35% 0px -60% 0px' }).observe(s));
+
+// ── Scroll reveal (IntersectionObserver) ──
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (!reduced) {
+  const rvEls = document.querySelectorAll('.fade-up, .fade-left, .fade-right, .scale-in, .clip-up');
+  // Stagger grid children (bento cards and process steps only — port cards handled via clip-up delays)
+  document.querySelectorAll('.bento .bcard, .price-grid .pcard, .process-steps .pstep').forEach((el, i) => {
+    if (!el.style.transitionDelay) el.style.transitionDelay = (i % 4 * 0.1) + 's';
+  });
+  const rv = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (en.isIntersecting) {
+        en.target.classList.add('in');
+        en.target.addEventListener('transitionend', () => { en.target.style.willChange = 'auto'; }, { once: true });
+        rv.unobserve(en.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  rvEls.forEach(el => rv.observe(el));
+  // Hero fades fire on load
+  setTimeout(() => document.querySelectorAll('#hero .fade-up').forEach(el => el.classList.add('in')), 100);
+} else {
+  document.querySelectorAll('.fade-up,.fade-left,.fade-right,.scale-in,.clip-up').forEach(el => el.classList.add('in'));
+}
+
+// ── Counter animation ──
+const cobs = new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    if (en.isIntersecting && !en.target.dataset.done) {
+      en.target.dataset.done = '1';
+      const tgt = +en.target.dataset.t, dur = 1800, st = performance.now();
+      const tick = now => {
+        const p = Math.min((now - st) / dur, 1), ease = 1 - Math.pow(1 - p, 3);
+        en.target.textContent = Math.floor(ease * tgt);
+        if (p < 1) requestAnimationFrame(tick); else en.target.textContent = tgt;
+      };
+      requestAnimationFrame(tick);
+      cobs.unobserve(en.target);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.counter').forEach(c => cobs.observe(c));
+
+// ── Testimonial carousel ──
+const ttrack = document.getElementById('ttrack');
+const tdots = document.querySelectorAll('.tdot');
+let cur = 0, timer;
+function goSlide(i) {
+  cur = i;
+  ttrack.style.transform = `translateX(-${i * 100}%)`;
+  tdots.forEach((d, j) => d.classList.toggle('on', j === i));
+}
+tdots.forEach(d => d.addEventListener('click', () => { goSlide(+d.dataset.i); reset(); }));
+function start() { timer = setInterval(() => goSlide((cur + 1) % tdots.length), 5000); }
+function reset() { clearInterval(timer); start(); }
+ttrack.addEventListener('mouseenter', () => clearInterval(timer));
+ttrack.addEventListener('mouseleave', start);
+start();
+
+// ── Canvas particles ──
+if (!reduced) {
+  const canvas = document.getElementById('hero-canvas');
+  const ctx = canvas.getContext('2d');
+  function resize() { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
+  class P {
+    constructor() { this.r(); }
+    r() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.s = Math.random() * 1.5 + 0.3;
+      this.vx = (Math.random() - .5) * .35;
+      this.vy = (Math.random() - .5) * .35;
+      this.o = Math.random() * .45 + .08;
+      this.g = Math.random() > .65;
+    }
+    u() { this.x += this.vx; this.y += this.vy; if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.r(); }
+    d() { ctx.beginPath(); ctx.arc(this.x, this.y, this.s, 0, Math.PI * 2); ctx.fillStyle = this.g ? `rgba(0,168,107,${this.o})` : `rgba(232,234,240,${this.o * .5})`; ctx.fill(); }
+  }
+  const pts = Array.from({ length: 80 }, () => new P());
+  let aid;
+  function loop() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    pts.forEach(p => { p.u(); p.d(); });
+    for (let i = 0; i < pts.length; i++)
+      for (let j = i + 1; j < pts.length; j++) {
+        const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y, dist = Math.sqrt(dx*dx+dy*dy);
+        if (dist < 90) { ctx.beginPath(); ctx.strokeStyle = `rgba(0,168,107,${.06*(1-dist/90)})`; ctx.lineWidth = .4; ctx.moveTo(pts[i].x,pts[i].y); ctx.lineTo(pts[j].x,pts[j].y); ctx.stroke(); }
+      }
+    aid = requestAnimationFrame(loop);
+  }
+  loop();
+  new IntersectionObserver(([e]) => { if (e.isIntersecting) loop(); else cancelAnimationFrame(aid); }, { threshold: 0 }).observe(document.getElementById('hero'));
+}
+
+// ── Contact form ──
+function setErr(fId, eId, show) {
+  const f = document.getElementById(fId), e = document.getElementById(eId);
+  if (!f || !e) return;
+  f.classList.toggle('err', show); e.classList.toggle('show', show);
+  f.setAttribute('aria-invalid', String(show));
+}
+['f-name','f-email','f-svc','f-msg'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('input', () => {
+    const eid = 'e-' + id.replace('f-','');
+    setErr(id, eid, false);
+  });
+});
+document.getElementById('cform').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const n = document.getElementById('f-name').value.trim();
+  const em = document.getElementById('f-email').value.trim();
+  const sv = document.getElementById('f-svc').value;
+  const mg = document.getElementById('f-msg').value.trim();
+  const rx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  let err = false;
+  setErr('f-name','e-name',!n); if (!n) err = true;
+  setErr('f-email','e-email',!em||!rx.test(em)); if (!em||!rx.test(em)) err = true;
+  setErr('f-svc','e-svc',!sv); if (!sv) err = true;
+  setErr('f-msg','e-msg',!mg); if (!mg) err = true;
+  if (err) { const first = this.querySelector('.err'); if (first) first.focus(); return; }
+  const btn = document.getElementById('sbtn');
+  btn.disabled = true; btn.style.opacity = '.6';
+  document.getElementById('sbtn-txt').textContent = 'Sending…';
+  setTimeout(() => {
+    this.style.display = 'none';
+    const s = document.getElementById('fsuccess'); s.style.display = 'block';
+    lucide.createIcons();
+  }, 900);
+});
+
+// ── FAQ accordion ──
+document.querySelectorAll('.fq').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.fitem');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.fitem.open').forEach(o => {
+      o.classList.remove('open');
+      o.querySelector('.fq').setAttribute('aria-expanded', 'false');
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  });
+});
+
+// ── Testimonial swipe (touch) ──
+(function() {
+  let tx = 0;
+  ttrack.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+  ttrack.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) < 40) return;
+    clearInterval(timer);
+    goSlide(dx < 0 ? Math.min(cur + 1, tdots.length - 1) : Math.max(cur - 1, 0));
+    reset();
+  }, { passive: true });
+})();
+
+// ── Bento card spotlight (21st.dev cursor-following radial gradient) ──
+document.querySelectorAll('.bcard').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--sx', (e.clientX - r.left) + 'px');
+    card.style.setProperty('--sy', (e.clientY - r.top) + 'px');
+  });
+});
+
+// ── Portfolio keyboard ──
+document.querySelectorAll('.port-card').forEach(c => {
+  c.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); c.click(); } });
+});
+</script>
+</body>
+</html>

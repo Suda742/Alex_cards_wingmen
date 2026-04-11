@@ -1,8 +1,10 @@
 # Ignore everything at the user home level
 *
 
-# Except this file and the website project
+# Except this file, the docs/ deploy folder, and the source project
 !.gitignore
+!docs/
+!docs/**
 !Desktop/
 !Desktop/website/
 !Desktop/website/**
